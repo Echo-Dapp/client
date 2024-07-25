@@ -1,10 +1,13 @@
 import React from "react";
 import Hero from "./components/Hero";
+import { useAccount } from "wagmi";
 
 export default function () {
+  const { address } = useAccount();
+
   return (
     <div>
-      <div className="p-page py-6 font-semibold">You are welcome</div>
+      <div className="p-page py-6 font-semibold">You are welcome {address}</div>
     </div>
   );
 }

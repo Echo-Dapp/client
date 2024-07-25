@@ -9,12 +9,15 @@ import useStore from "../hooks/useStore";
 export default function () {
   const headerRef = useRef() as React.MutableRefObject<HTMLDivElement>;
 
-  const headerRect = useRect(headerRef);
+  const [headerRect, updateHeaderRect] = useRect(headerRef);
 
   const store = useStore();
 
   useEffect(() => {
-    store.set("header-height", headerRect?.height);
+    setTimeout(() => {
+      updateHeaderRect();
+      store.set("header-height", headerRect?.height);
+    }, 1000);
   }, [headerRect]);
 
   return (

@@ -16,7 +16,10 @@ export default function Default() {
         <div className="relative flex-1 h-screen flex flex-col">
           <Header />
 
-          <figure role="separator" className="pb-[7vh]" />
+          <figure
+            role="separator"
+            style={{ height: store.get("header-height") }}
+          />
 
           <article className="h-screen overflow-y-scroll flex-1">
             <div
