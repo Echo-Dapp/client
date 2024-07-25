@@ -8,12 +8,13 @@ export default {
         widescreen: { min: "780px" },
       },
       colors: {
-        primary: "",
-        secondary: "",
-        background: "",
-        foreground: "",
-        front: "",
-        back: "",
+        primary: "#2837FF",
+        secondary: "#00FBF2",
+        background: "#09090A",
+        foreground: "#121214",
+        front: "#FBFBFB",
+        mute: "#ABABB5",
+        back: "#0A0A0A",
       },
       borderRadius: {
         inherit: "inherit",
@@ -23,6 +24,7 @@ export default {
       },
       fontFamily: {
         poppins: '"Poppins", sans-serif',
+        inter: '"Inter", sans-serif',
         raleway: '"Raleway", sans-serif',
       },
       zIndex: {
