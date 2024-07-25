@@ -1,3 +1,5 @@
+import { isAddress } from "viem";
+
 export function generateRandomString(length: number, seed?: string) {
   let result = "";
   const characters =
@@ -137,4 +139,18 @@ export function getObjectKeys<T extends object>(obj: T) {
 export function getRandomFromArray<T>(array: Array<T>): T {
   const randomIndex = Math.floor(Math.random() * array.length);
   return array[randomIndex];
+}
+
+export function formatEvmAddress(address: string) {
+  if (isAddress(address))
+    return (
+      address.slice(0, 7) +
+      "..." +
+      address.slice(address.length - 5, address.length)
+    );
+  return address;
+}
+
+export function formatEthersValue(num: number | bigint | string, dec?: number) {
+  return Number(num) / Math.pow(10, dec || 18);
 }

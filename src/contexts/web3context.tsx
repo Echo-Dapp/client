@@ -1,28 +1,17 @@
 import React, { createContext, useContext } from "react";
-import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { createConfig, custom, WagmiProvider } from "wagmi";
-import { useParticleProvider } from "@particle-network/connectkit";
-import { bscTestnet } from "viem/chains";
+import { WagmiConfig } from "wagmi";
+import wagmiConfig from "../config/wagmi";
 
 interface Web3ContextType {}
 
 const Web3Context = createContext<Web3ContextType>({} as Web3ContextType);
 
 export function Web3Provider({ children }: { children: React.ReactNode }) {
-  const provider = useParticleProvider();
-  const queryClient = new QueryClient();
-
-  const wagmiConfig = createConfig({
-    chains: [bscTestnet],
-    transports: { [bscTestnet.id]: custom(provider as any) },
-  });
   return (
     <>
-      <WagmiProvider config={wagmiConfig}>
-        <QueryClientProvider client={queryClient}>
-          <Wrapper>{children}</Wrapper>
-        </QueryClientProvider>
-      </WagmiProvider>
+      <WagmiConfig config={wagmiConfig}>
+        <Wrapper>{children}</Wrapper>
+      </WagmiConfig>
     </>
   );
 }

@@ -3,21 +3,21 @@ import { getCoords } from "../utils";
 
 export default function (element: React.MutableRefObject<HTMLElement>) {
   const [rect, setRect] = useState<DOMRect>();
-  const [flag, setFlag] = useState(false);
+  const flag = useRef(false);
 
   useEffect(() => {
-    if (!flag) {
-      setRect(element.current.getBoundingClientRect());
-      setFlag(true);
+    if (!flag.current) {
+      update();
     }
 
     return () => {
-      setFlag(false);
+      flag.current = false;
     };
   }, [flag]);
 
   function update() {
-    setFlag(false);
+    setRect(element.current.getBoundingClientRect());
+    flag.current = true;
   }
 
   return [rect, update] as const;

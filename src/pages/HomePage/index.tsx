@@ -1,5 +1,3 @@
-import React from "react";
-import Hero from "./components/Hero";
 import { useAccount } from "wagmi";
 
 export default function () {

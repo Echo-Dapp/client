@@ -18,7 +18,7 @@ export default function useFetch<T>(
   async function loadData() {
     setLoading(true);
 
-    const fetchedData = await axios.get(url);
+    const fetchedData = await axios.get<T>(url);
 
     setData(fetchedData.data);
     setLoading(false);
@@ -34,5 +34,5 @@ export default function useFetch<T>(
     }
   }, [loading]);
 
-  return [data as T, loading as boolean] as const;
+  return [data, loading as boolean] as const;
 }
