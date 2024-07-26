@@ -1,8 +1,11 @@
 import React from "react";
 import Icon, { IconType } from "./Icon";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
+import { twMerge } from "tailwind-merge";
 
 export default function () {
+  const navigate = useNavigate();
+
   return (
     <nav className="h-screen pl-[2vw] pr-[1.5vw] flex flex-col pt-10">
       <div className="flex text-xl gap-x-2 items-center">
@@ -17,17 +20,30 @@ export default function () {
 
       <figure className="border border-mute/30 mb-5 mt-6 scale-x-[115%]" />
 
-      <section className="flex flex-col gap-x-5">
+      <section className="flex flex-col gap-y-6">
         {navItems.map((item, key) => (
-          <Link
+          <button
             key={key}
-            to={item.link}
+            id={item.id}
             title={item.tooltip}
-            className="flex gap-x-2 text-base"
+            onClick={() => {
+              if (item.link) navigate(item.link);
+              if (item.action) item.action();
+            }}
+            className={twMerge(
+              "flex gap-x-2 items-center text-base py-1 pr-3",
+              item.className
+            )}
           >
             <Icon icon={item.icon} className="text-[1.5em]" />
-            <span>{item.name}</span>
-          </Link>
+            <div className="flex flex-col relative">
+              <span>{item.name}</span>
+              <span className="text-mute/70 text-[10px] absolute whitespace-nowrap top-full -translate-y-[90%] left-full translate-x-2">
+                {item.subtitle}
+              </span>
+            </div>
+            {item.expansion && <Icon icon="chevronRight" />}
+          </button>
         ))}
       </section>
     </nav>
@@ -38,8 +54,12 @@ type NavItem = {
   name: string;
   subtitle?: string;
   icon: IconType;
-  link: string;
   tooltip?: string;
+  id?: string;
+  className?: string;
+  link?: string;
+  action?: () => void;
+  expansion?: React.ReactNode;
 };
 
 const navItems: NavItem[] = [
@@ -51,57 +71,59 @@ const navItems: NavItem[] = [
   },
   {
     name: "Swap",
-    icon: "analytics",
+    icon: "swapHoriz",
     link: "/",
     tooltip: "Home | Portfolio",
   },
   {
     name: "Swap",
     subtitle: "Cross Chain",
-    icon: "analytics",
+    icon: "shuffle",
     link: "/",
     tooltip: "Home | Portfolio",
   },
   {
     name: "Bridge",
-    icon: "analytics",
+    icon: "keyboardOptionKey",
     link: "/",
     tooltip: "Home | Portfolio",
   },
   {
     name: "Trade",
-    icon: "analytics",
+    icon: "monitoring",
     link: "/",
     tooltip: "Home | Portfolio",
   },
   {
     name: "Staking",
-    icon: "analytics",
+    icon: "lockReset",
     link: "/",
     tooltip: "Home | Portfolio",
   },
   {
     name: "Tokens",
-    icon: "analytics",
+    icon: "paid",
     link: "/",
     tooltip: "Home | Portfolio",
   },
   {
     name: "NFTs",
-    icon: "analytics",
+    icon: "package2",
     link: "/",
     tooltip: "Home | Portfolio",
   },
   {
     name: "Explore",
-    icon: "analytics",
+    icon: "explore",
     link: "/",
     tooltip: "Home | Portfolio",
   },
   {
     name: "Buy Crypto",
-    icon: "analytics",
-    link: "/",
+    icon: "currencyExchange",
+    action: () => {
+      (window as any).moonpayBuy();
+    },
     tooltip: "Home | Portfolio",
   },
 ];

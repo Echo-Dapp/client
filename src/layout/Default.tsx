@@ -21,9 +21,9 @@ export default function Default() {
             style={{ height: store.get("header-height") }}
           />
 
-          <article className="h-screen overflow-y-scroll flex-1">
+          <article className="h-screen flex-1">
             <div
-              className="bg-background rounded-t-lg border border-mute/25 min-h-screen"
+              className="bg-background h-full rounded-t-lg border border-mute/25 overflow-y-scroll"
               role="application"
             >
               <Outlet />
