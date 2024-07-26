@@ -2,6 +2,7 @@ import React from "react";
 import Icon, { IconType } from "./Icon";
 import { Link, useNavigate } from "react-router-dom";
 import { twMerge } from "tailwind-merge";
+import FlexSeparator from "./FlexSeparator";
 
 export default function () {
   const navigate = useNavigate();
@@ -31,7 +32,7 @@ export default function () {
               if (item.action) item.action();
             }}
             className={twMerge(
-              "flex gap-x-2 items-center text-base py-1 pr-3",
+              "flex gap-x-2 items-center relative text-base py-1 pr-3 group",
               item.className
             )}
           >
@@ -42,11 +43,46 @@ export default function () {
                 {item.subtitle}
               </span>
             </div>
-            {item.expansion && <Icon icon="chevronRight" />}
+            {item.expansion && (
+              <Icon
+                icon="chevronRight"
+                className="text-2xl absolute top-1/2 -translate-y-1/2 right-0 duration-150 opacity-60 group-hover:opacity-100 group-hover:translate-x-[10%]"
+              />
+            )}
+
+            {item.expansion && (
+              <div
+                className="absolute bg-foreground left-full z-[999] top-1/2 -translate-y-1/2 border border-mute/20 rounded-md opacity-0 pointer-events-none
+              group-hover:opacity-100 group-hover:pointer-events-auto duration-500"
+              >
+                {item.expansion}
+              </div>
+            )}
           </button>
         ))}
       </section>
     </nav>
+  );
+}
+
+function LinksExpansion(props: {
+  items: Array<{ name: string; link: string; icon: IconType }>;
+}) {
+  return (
+    <section className="flex flex-col gap-y-4 px-2 py-4">
+      {props.items.map((item, key) => (
+        <Link
+          key={key}
+          className="flex gap-x-2 items-center relative text-base group hover:bg-mute/30 px-2 py-2 rounded"
+          to={item.link}
+        >
+          <Icon icon={item.icon} className="text-[1.5em]" />
+          <div className="flex flex-col relative whitespace-nowrap">
+            {item.name}
+          </div>
+        </Link>
+      ))}
+    </section>
   );
 }
 
@@ -73,44 +109,60 @@ const navItems: NavItem[] = [
     name: "Swap",
     icon: "swapHoriz",
     link: "/",
-    tooltip: "Home | Portfolio",
+    tooltip: "Swap Tokens",
   },
   {
     name: "Swap",
     subtitle: "Cross Chain",
     icon: "shuffle",
     link: "/",
-    tooltip: "Home | Portfolio",
+    tooltip: "Cross Chain Swap",
   },
   {
     name: "Bridge",
     icon: "keyboardOptionKey",
     link: "/",
-    tooltip: "Home | Portfolio",
+    tooltip: "Bridge Assets through EduChain",
   },
   {
     name: "Trade",
     icon: "monitoring",
     link: "/",
-    tooltip: "Home | Portfolio",
+    tooltip: "Trade Tokens on EduChain",
   },
   {
     name: "Staking",
     icon: "lockReset",
     link: "/",
-    tooltip: "Home | Portfolio",
+    tooltip: "Stake Assets",
   },
   {
     name: "Tokens",
     icon: "paid",
     link: "/",
-    tooltip: "Home | Portfolio",
+    expansion: (
+      <LinksExpansion
+        items={[
+          { name: "Launch Token", icon: "pokerChip", link: "/" },
+          { name: "Distrubute Token", icon: "database", link: "/" },
+          { name: "Browse Tokens", icon: "send", link: "/" },
+        ]}
+      />
+    ),
   },
   {
     name: "NFTs",
     icon: "package2",
     link: "/",
-    tooltip: "Home | Portfolio",
+    expansion: (
+      <LinksExpansion
+        items={[
+          { name: "Launch NFT", icon: "libraryAdd", link: "/" },
+          { name: "Distrubute NFTs", icon: "send", link: "/" },
+          { name: "NFT Marketplace", icon: "store", link: "/" },
+        ]}
+      />
+    ),
   },
   {
     name: "Explore",
