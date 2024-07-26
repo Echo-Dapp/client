@@ -108,7 +108,7 @@ const navItems: NavItem[] = [
   {
     name: "Swap",
     icon: "swapHoriz",
-    link: "/",
+    link: "/swap",
     tooltip: "Swap Tokens",
   },
   {
