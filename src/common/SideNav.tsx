@@ -108,7 +108,7 @@ const navItems: NavItem[] = [
   {
     name: "Swap",
     icon: "swapHoriz",
-    link: "/",
+    link: "/swap",
     tooltip: "Swap Tokens",
   },
   {
@@ -139,13 +139,12 @@ const navItems: NavItem[] = [
   {
     name: "Tokens",
     icon: "paid",
-    link: "/",
     expansion: (
       <LinksExpansion
         items={[
-          { name: "Launch Token", icon: "pokerChip", link: "/" },
-          { name: "Distrubute Token", icon: "database", link: "/" },
-          { name: "Browse Tokens", icon: "send", link: "/" },
+          { name: "Launch Token", icon: "pokerChip", link: "/token/launch" },
+          { name: "Distrubute Token", icon: "send", link: "/" },
+          { name: "Browse Tokens", icon: "database", link: "/" },
         ]}
       />
     ),
