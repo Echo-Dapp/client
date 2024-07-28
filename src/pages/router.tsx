@@ -16,8 +16,9 @@ const router = createBrowserRouter(
       <Route element={<Layout.Default />}>
         <Route index element={<HomePage />} />
         <Route path="/token/launch" element={<TokenLaunch />} />
-        <Route path="*" element={<ErrorPage />} />
         <Route path="/swap" element={<SwapPage />} />
+
+        <Route path="*" element={<ErrorPage />} />
       </Route>
     </>
   )

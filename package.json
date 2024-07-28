@@ -17,6 +17,7 @@
     "react-router-dom": "^6.10.0",
     "tailwind-merge": "^2.1.0",
     "viem": "^1.20.0",
+    "vite-plugin-node-polyfills": "^0.22.0",
     "wagmi": "^1.4.12"
   },
   "devDependencies": {

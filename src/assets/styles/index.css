@@ -19,3 +19,10 @@
 .scrollbar-main::-webkit-scrollbar-thumb {
   @apply bg-mute hover:saturate-200;
 }
+
+.scrollbar-none::-webkit-scrollbar {
+  @apply hidden;
+}
+.scrollbar-none::-webkit-scrollbar-track {
+  @apply hidden;
+}

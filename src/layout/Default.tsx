@@ -2,11 +2,8 @@ import { Outlet } from "react-router-dom";
 import Header from "../common/Header";
 import Modal from "../common/Modal";
 import SideNav from "../common/SideNav";
-import useStore from "../hooks/useStore";
 
 export default function Default() {
-  const store = useStore();
-
   return (
     <main className="relative">
       <Modal />
@@ -17,7 +14,7 @@ export default function Default() {
           <Header />
 
           <article
-            className="bg-background rounded-tl-lg border border-mute/25 overflow-y-scroll flex-1 scrollbar-main"
+            className="bg-background rounded-tl-xl border border-mute/25 overflow-y-scroll flex-1 scrollbar-main"
             role="application"
           >
             <Outlet />
