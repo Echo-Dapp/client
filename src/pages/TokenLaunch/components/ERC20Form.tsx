@@ -2,49 +2,21 @@ import React, { useEffect, useState } from "react";
 import DataForm from "../../../common/DataForm";
 import TitledInput from "../../../common/TitledInput";
 import ToggleInput from "../../../common/ToggleInput";
-import { useAccount, useWalletClient } from "wagmi";
-import contractDefinitions from "../../../contracts";
+import useModal from "../../../hooks/useModal";
+import ConfirmationModal from "./ConfirmationModal";
 
 export default function ERC20Form() {
   const [valid, setValid] = useState(false);
 
-  const { data: client } = useWalletClient();
-  const { address } = useAccount();
+  const modal = useModal();
 
-  function createNewToken(data: any) {
-    if (!client || !address) return;
-
-    const {
-      name,
-      symbol,
-      initialSupply,
-      decimals,
-      burnable,
-      mintable,
-      owner,
-      maxSupply,
-      maxTokensPerWallet,
-    } = data;
-    console.log(data);
-    client.deployContract({
-      ...contractDefinitions.tokenERC20,
-      args: [
-        name,
-        symbol,
-        decimals || 18,
-        owner || address,
-        initialSupply,
-        maxSupply || 0,
-        mintable ? true : false,
-        burnable ? true : false,
-        maxTokensPerWallet || 0,
-      ],
-    });
+  function requestConfirmation(data: any) {
+    modal.show(<ConfirmationModal data={data} />);
   }
 
   return (
     <DataForm
-      callback={(data) => createNewToken(data)}
+      callback={(data) => requestConfirmation(data)}
       className="w-[40%] flex flex-col gap-y-8"
       setValidity={setValid}
     >
