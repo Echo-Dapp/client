@@ -12,7 +12,7 @@ export default function ERC20Form() {
   const { address } = useAccount();
 
   function createNewToken(data: any) {
-    if (!client || address) return;
+    if (!client || !address) return;
 
     const {
       name,
@@ -25,13 +25,13 @@ export default function ERC20Form() {
       maxSupply,
       maxTokensPerWallet,
     } = data;
-
+    console.log(data);
     client.deployContract({
       ...contractDefinitions.tokenERC20,
       args: [
         name,
         symbol,
-        decimals,
+        decimals || 18,
         owner || address,
         initialSupply,
         maxSupply || 0,
@@ -44,7 +44,7 @@ export default function ERC20Form() {
 
   return (
     <DataForm
-      callback={createNewToken}
+      callback={(data) => createNewToken(data)}
       className="w-[40%] flex flex-col gap-y-8"
       setValidity={setValid}
     >

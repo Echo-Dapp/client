@@ -21,7 +21,7 @@ export default function () {
 
       <figure className="border border-mute/30 mb-5 mt-6 scale-x-[115%]" />
 
-      <section className="flex flex-col gap-y-6 flex-1 overflow-y-scroll scrollbar-none">
+      <section className="flex flex-col gap-y-6">
         {navItems.map((item, key) => (
           <button
             key={key}
