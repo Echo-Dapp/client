@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import DataForm from "../../../common/DataForm";
 import TitledInput from "../../../common/TitledInput";
 import ToggleInput from "../../../common/ToggleInput";
@@ -79,14 +79,14 @@ export default function ERC20Form() {
       </div>
 
       <TitledInput
-        title="Owner"
         name="owner"
+        title="Owner"
         placeholder="e. g. 0x..."
         subtitle="[Optional] - By default you are the owner. Note: if you change the owner to an address that you can not control, you will not be able to make any changes to the token after its creation"
       />
       <TitledInput
-        title="Maximum Supply"
         name="maxSupply"
+        title="Maximum Supply"
         type="number"
         min={1}
         step={1}
@@ -94,8 +94,8 @@ export default function ERC20Form() {
         subtitle="[Optional] - You can set the maximum total supply of the token, this sets a limit for minting. Limit cannot be changed after the initial token creation."
       />
       <TitledInput
-        title="Maximum Tokens per wallet"
         name="maxTokensPerWallet"
+        title="Maximum Tokens per wallet"
         min={1}
         step={1}
         placeholder="e. g. 200"

@@ -3,7 +3,6 @@ import contractDefinitions from "../../../contracts";
 import { formatEvmAddress } from "../../../utils";
 import useModal from "../../../hooks/useModal";
 import { useEffect, useState } from "react";
-import { twMerge } from "tailwind-merge";
 
 export default function (props: { data: any }) {
   const { data: client } = useWalletClient();
@@ -68,12 +67,11 @@ export default function (props: { data: any }) {
   }, [deployTx]);
 
   return (
-    <div
-      className={twMerge(
-        "p-5 bg-foreground rounded-md flex flex-col gap-y-3",
-        loading && "animate-pulse opacity-70"
+    <div className="p-5 bg-foreground rounded-md flex flex-col gap-y-3 relative overflow-hidden">
+      {loading && (
+        <figure className="absolute-cover z-1 bg-mute/20 animate-pulse pointer-events-none" />
       )}
-    >
+
       <h1 className="mb-2 font-medium text-xl">
         Token{" "}
         <span className="text-secondary font-light italic">
@@ -109,7 +107,6 @@ export default function (props: { data: any }) {
         <button
           onClick={() => modal.hide()}
           className="flex-1 bg-red-500 rounded-md text-black py-2 font-medium"
-          disabled={loading}
         >
           Cancel
         </button>
