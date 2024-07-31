@@ -1,6 +1,9 @@
 import React, { useState } from "react";
 import Icon from "../../../common/Icon";
 import { twMerge } from "tailwind-merge";
+import useApiResponse from "../../../hooks/useApiResponse";
+import { useContractRead, useNetwork } from "wagmi";
+import contractDefinitions from "../../../contracts";
 
 type TradingPairEntry = {
   name: string;
@@ -13,6 +16,14 @@ export default function Swap() {
   const [tradeState, setTradeState] = useState<"BUY" | "SELL">("BUY");
   const buying = tradeState == "BUY" ? 1 : 0;
   const selling = tradeState == "SELL" ? 1 : 0;
+
+  const addresses = useContractRead({
+    ...contractDefinitions.echoSwap,
+    functionName: "allPairsLength",
+  });
+
+  console.log(addresses);
+
   const tradingPair = [
     {
       symbol: "ETH",
