@@ -52,8 +52,8 @@ export default function () {
 
             {item.expansion && (
               <div
-                className="absolute bg-foreground left-full z-[999] top-1/2 -translate-y-1/2 border border-mute/20 rounded-md opacity-0 pointer-events-none
-              group-hover:opacity-100 group-hover:pointer-events-auto duration-500"
+                className="absolute bg-foreground left-full z-[999] top-1/2 -translate-y-1/2 border border-mute/20 rounded opacity-0 pointer-events-none
+              group-hover:opacity-100 group-hover:pointer-events-auto duration-500 group-hover:duration-200 translate-x-1/4 group-hover:translate-x-0"
               >
                 {item.expansion}
               </div>
@@ -144,6 +144,7 @@ const navItems: NavItem[] = [
         items={[
           { name: "Launch Token", icon: "pokerChip", link: "/token/launch" },
           { name: "Distrubute Token", icon: "send", link: "/" },
+          { name: "Manage Tokens", icon: "manufacturing", link: "/" },
           { name: "Browse Tokens", icon: "database", link: "/" },
         ]}
       />
@@ -152,11 +153,10 @@ const navItems: NavItem[] = [
   {
     name: "NFTs",
     icon: "package2",
-    link: "/",
     expansion: (
       <LinksExpansion
         items={[
-          { name: "Launch NFT", icon: "libraryAdd", link: "/" },
+          { name: "Launch NFT", icon: "libraryAdd", link: "/nft/launch" },
           { name: "Distrubute NFTs", icon: "send", link: "/" },
           { name: "NFT Marketplace", icon: "store", link: "/" },
         ]}
