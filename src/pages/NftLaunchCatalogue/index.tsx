@@ -13,7 +13,7 @@ export default function () {
       <section className="flex flex-wrap gap-10">
         {categories.map((category, key) => (
           <div
-            className="w-[45%] flex border rounded-md border-mute/30 overflow-hidden relative cursor-pointer group"
+            className="w-[45%] flex border rounded-md border-mute/30 overflow-hidden relative cursor-pointer group hover:bg-foreground/30"
             role="button"
             key={key}
           >
@@ -25,7 +25,7 @@ export default function () {
             <div className="w-[22%]">
               <img
                 src={category.image}
-                className="-rotate-6 scale-125"
+                className="-rotate-6 scale-125 group-hover:saturate-150 group-hover:hue-rotate-[5deg] duration-300"
                 alt={category.name}
               />
             </div>
