@@ -10,6 +10,7 @@ import ErrorPage from "./ErrorPage/ErrorPage";
 import TokenLaunch from "./TokenLaunch";
 import SwapPage from "./SwapPage";
 import NftLaunchCatalogue from "./NftLaunchCatalogue";
+import BridgePage from "./BridgePage";
 
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -22,6 +23,8 @@ const router = createBrowserRouter(
         <Route path="/nft/launch" element={<NftLaunchCatalogue />} />
 
         <Route path="/swap" element={<SwapPage />} />
+
+        <Route path="/bridge" element={<BridgePage />} />
 
         <Route path="*" element={<ErrorPage />} />
       </Route>

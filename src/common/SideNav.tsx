@@ -121,7 +121,7 @@ const navItems: NavItem[] = [
   {
     name: "Bridge",
     icon: "keyboardOptionKey",
-    link: "/",
+    link: "/bridge",
     tooltip: "Bridge Assets through EduChain",
   },
   {
