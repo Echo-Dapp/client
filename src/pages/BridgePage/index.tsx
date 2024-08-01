@@ -197,6 +197,18 @@ export default function BridgePage() {
           Begin new transfer
         </button>
       </div>
+      <div>
+        <div className="absolute bottom-0 right-0 w-32 aspect-square bg-secondary/20" />
+        <div className="absolute bottom-0 right-64 w-32 aspect-square bg-primary/10" />
+        <div className="absolute bottom-48 right-64 w-32 aspect-square bg-secondary/5" />
+        <div className="absolute bottom-16 right-96 w-32  aspect-square bg-primary/5" />
+        <div className="absolute bottom-16 right-32 w-32 aspect-square bg-primary/10" />
+        <div className="absolute bottom-96 right-0 w-32  aspect-square bg-secondary/10" />
+        <div className="absolute bottom-48 right-0 w-32  aspect-square bg-primary/10" />
+        <div className="absolute bottom-96 right-64 w-32  aspect-square bg-primary/5" />
+        <div className="absolute bottom-64 right-32 w-32  aspect-square bg-primary/10" />
+        <div className="absolute bottom-64 right-96 w-32  aspect-square bg-primary/5" />
+      </div>
     </div>
   );
 }
