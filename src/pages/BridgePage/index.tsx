@@ -26,6 +26,7 @@ export default function BridgePage() {
   const [isFromDropdownOpen, setIsFromDropdownOpen] = useState(false);
   const [isToDropdownOpen, setIsToDropdownOpen] = useState(false);
   const [isTransferToOther, setIsTransferToOther] = useState(false);
+  const [destinationAddress, setDestinationAddress] = useState("");
 
   const handleCheckboxChange = (event: { target: { checked: any } }) => {
     setIsTransferToOther(event.target.checked);
@@ -50,6 +51,14 @@ export default function BridgePage() {
   const getSelectedChainLogo = (chainName: string) => {
     const chain = chains.find((c) => c.name === chainName);
     return chain ? chain.logo : "";
+  };
+
+  const isFormValid = () => {
+    if (isTransferToOther) {
+      return transferFrom && transferTo && destinationAddress;
+    } else {
+      return transferFrom && transferTo;
+    }
   };
 
   return (
@@ -174,10 +183,17 @@ export default function BridgePage() {
             <input
               className="bg-transparent rounded-lg p-3"
               placeholder="Destination address"
+              value={destinationAddress}
+              onChange={(e) => setDestinationAddress(e.target.value)}
             />
           )}
         </div>
-        <button className="mt-4 self-end bg-primary opacity-30 py-2 px-4 rounded-md">
+        <button
+          className={`mt-4 self-end py-2 px-4 rounded-md bg-primary ${
+            isFormValid() ? "" : "opacity-60 cursor-not-allowed"
+          }`}
+          disabled={!isFormValid()}
+        >
           Begin new transfer
         </button>
       </div>
